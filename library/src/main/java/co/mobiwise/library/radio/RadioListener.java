@@ -17,5 +17,7 @@ public interface RadioListener {
 
   void onAudioSessionId(int audioSessionId);
 
+  void onBufferChanged();
+
   void onError();
 }

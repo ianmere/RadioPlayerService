@@ -314,7 +314,7 @@ public class RadioPlayerService extends Service implements PlayerCallback {
 
     @Override
     public void playerPCMFeedBuffer(boolean b, int i, int i1) {
-        //Empty
+        notifyBufferChanged();
     }
 
     @Override
@@ -372,6 +372,12 @@ public class RadioPlayerService extends Service implements PlayerCallback {
 
     public void unregisterListener(RadioListener mListener) {
         mListenerList.remove(mListener);
+    }
+
+    private void notifyBufferChanged(){
+        for (RadioListener mRadioListener : mListenerList) {
+            mRadioListener.onBufferChanged();
+        }
     }
 
     private void notifyRadioStarted() {
